@@ -11,7 +11,7 @@ int main(int argc, char *argv[]){
       "tijera"
     };
     int jugador;
-puts("Partida de piedra, papel o tijeras);
+puts("Partida de piedra, papel o tijeras");
 puts("Elija una opcion: piedra(0), papel(1), tijera(2)");
 while(victoria != 1){
 scanf("%d", &jugador);
