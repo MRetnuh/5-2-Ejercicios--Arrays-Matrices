@@ -58,7 +58,7 @@ p2++;
 else if(opciones[jugador] == opciones[maquina]){
     printf("Es empate\n");
 }
-else if(p1 == 3){
+ if(p1 == 3){
     printf("Ganaste la partida\n");
     victorias++;
     p1=0;
@@ -79,3 +79,4 @@ partidas++;
     printf("Ganaste:%d\nPerdiste:%d\n", victorias, derrotas);
     return 0;
 }
+/*Codigo realizado por Eduardo Orsi, Matias Leanza y Kevin de Groote*/
