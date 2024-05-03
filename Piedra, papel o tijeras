@@ -4,6 +4,8 @@
 #include<stdlib.h>
 
 int main(int argc, char *argv[]){
+  
+  //Declaracion de variables
   int partidas = 1;
     int victorias = 0;
     int derrotas = 0;
@@ -16,21 +18,27 @@ int main(int argc, char *argv[]){
     };
     int jugador;
 puts("Partida de piedra, papel o tijeras");
+//Pregunta al usuario
 puts("Elija una opcion: piedra(0), papel(1), tijera(2)");
+
+//Cuando el contador llegue al mejor de 3 termina la partida
 while(victorias != 3 && derrotas != 3){
     printf("Partida N°%d\n", partidas);
 while(p1 !=3 && p2 !=3){ //rondas
 scanf("%d", &jugador);
+
+//mensaje de error
 if(jugador > 2 || jugador < 0){
     puts("Ingrese una opcion valida");
 }else{
 
+//semilla aleatoria con limite 3
 srand(time(NULL));
 int maquina = rand () % 3;
 printf("Tu movimiento: %s\n", opciones[jugador]);
 printf("El movimiento de la maquina: %s\n", opciones[maquina]);
 
-
+//Comprobacion de resultado, con sus posibilidades
 if(opciones[jugador] == opciones[0] && opciones[2] == opciones[maquina]){
 puts("ganaste");
 p1++;
@@ -58,6 +66,10 @@ p2++;
 else if(opciones[jugador] == opciones[maquina]){
     printf("Es empate\n");
 }
+ 
+ //Condiciones para chequear el ganador
+
+//usuario
  if(p1 == 3){
     printf("Ganaste la partida\n");
     victorias++;
@@ -65,6 +77,7 @@ else if(opciones[jugador] == opciones[maquina]){
     p2=0;
     break;
 }
+//maquina
 else if(p2 == 3){
     printf("Perdiste la partida\n");
     derrotas++;
