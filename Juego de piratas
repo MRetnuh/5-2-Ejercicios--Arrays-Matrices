@@ -64,6 +64,10 @@ while (intentos <= 50) {
        printf("El tesoro se encontraba en la fila %d y la columna %d\n", tesoro1, tesoro2);
        return 0;
    }
+   if(Tablero[fila][columna] == Tablero[0][columna] || Tablero[fila][columna] == Tablero[7][columna] || Tablero[fila][columna] == Tablero[fila][0] || Tablero[fila][columna] == Tablero[fila][7]){
+       puts("Perdiste por pisar el agua");
+       return 0;
+   }
    if(fila == tesoro1 && columna == tesoro2){
        puts("Ganaste");
        return 0;
