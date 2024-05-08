@@ -4,8 +4,12 @@
 
 
 int crear_tablero(int n,int Tablero[n][n],int pirata, int pirata1, int pirata2, int tesoro1, int tesoro2){
+    if(n < 4) {
+        puts("Error, ponga un numero valido");
+        return 0;
+    }
     
-    printf(" 0: Agua\n 1: Tierra\n 2: Puentes\n 3: Pirata\n \n");
+    printf("0: Agua\n 1: Tierra\n 2: Puentes\n 3: Pirata\n \n");
 
 
    for (int i = 0; i < n; i++){
@@ -50,7 +54,7 @@ int buscar_tesoro (int n,int Tablero[n][n],int pirata, int pirata1, int pirata2,
     printf("\n");
     intentos++;
     int opcionDireccion;
-    printf("Elija una opcion\n  1)Norte\n 2)Noreste\n 3)Noroeste\n 4)Sur\n 5)Sureste\n 6)Suroeste\n 7)Este\n 8)Oeste:\n");
+    printf("Elija una opcion\n 1)Norte\n 2)Sur\n 3)Este\n 4)Oeste:\n");
      scanf("%d", &opcionDireccion);
         if (opcionDireccion == 1) {
             Tablero[pirata1 -1][pirata2] = pirata;
@@ -58,36 +62,16 @@ int buscar_tesoro (int n,int Tablero[n][n],int pirata, int pirata1, int pirata2,
             pirata1=a -1;
             pirata2=b;
         } else if (opcionDireccion == 2) {
-          Tablero[pirata1 - 1][pirata2 + 1] = pirata;
+          Tablero[pirata1 + 1][pirata2] = pirata;
           Tablero[a][b] = 1;
           pirata1=a + 1;
           pirata2=b;
         } else if (opcionDireccion == 3) {            
-          Tablero[pirata1 - 1][pirata2 - 1] = pirata;
+          Tablero[pirata1][pirata2 + 1] = pirata;
           Tablero[a][b] = 1;
           pirata1=a;
             pirata2=b + 1;
         } else if (opcionDireccion == 4) {
-          Tablero[pirata1 + 1][pirata2] = pirata;
-          Tablero[a][b] = 1;
-          pirata1=a;
-            pirata2=b - 1;
-          }  else if (opcionDireccion == 5) {
-          Tablero[pirata1 + 1][pirata2 - 1] = pirata;
-          Tablero[a][b] = 1;
-          pirata1=a;
-            pirata2=b - 1;
-          }  else if (opcionDireccion == 6) {
-          Tablero[pirata1 + 1][pirata2 - 1] = pirata;
-          Tablero[a][b] = 1;
-          pirata1=a;
-            pirata2=b - 1;
-          }  else if (opcionDireccion == 7) {
-          Tablero[pirata1][pirata2 + 1] = pirata;
-          Tablero[a][b] = 1;
-          pirata1=a;
-            pirata2=b - 1;
-          }  else if (opcionDireccion == 8) {
           Tablero[pirata1][pirata2 - 1] = pirata;
           Tablero[a][b] = 1;
           pirata1=a;
@@ -130,10 +114,6 @@ int main(int argc, char * argv[]){
     int n;
     printf("Elija el tamaño (minimo 4x4) del tablero: ");
     scanf("%d", &n);
-    if(n < 4) {
-        puts("Error, ponga un numero valido");
-        return 0;
-    }
     int pirata = 3;
     int pirata1 = (rand()% (n-2)) + 1;
     int pirata2 = (rand()% (n-2)) + 1;
