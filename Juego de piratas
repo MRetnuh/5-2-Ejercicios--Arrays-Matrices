@@ -83,7 +83,7 @@ int buscar_tesoro (int n,int Tablero[n][n],int pirata, int pirata1, int pirata2,
           pirata1=a;
             pirata2=b - 1;
           }  else if (opcionDireccion == 7) {
-          Tablero[pirata1][pirata2 - +1] = pirata;
+          Tablero[pirata1][pirata2 + 1] = pirata;
           Tablero[a][b] = 1;
           pirata1=a;
             pirata2=b - 1;
