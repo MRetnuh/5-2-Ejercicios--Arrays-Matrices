@@ -2,20 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main(int argc, char * argv[]){
-    srand(time(NULL));
-    int n;
-     printf("Elija el tamaño (minimo 4x4) del tablero: ");
-      scanf("%d", &n);
-    int pirata = 3;
-    int pirata1 = (rand()% (n-2)) + 1;
-    int pirata2 = (rand()% (n-2)) + 1;
-    int tesoro1 = (rand()% (n-2)) + 1;
-    int tesoro2 = (rand()% (n-2)) + 1;
-    int intentos = 1;
-    int Tablero [n][n];
 
-    
+int crear_tablero(int n,int Tablero[n][n],int pirata, int pirata1, int pirata2, int tesoro1, int tesoro2){
     if(n < 4) {
         puts("Error, ponga un numero valido");
         return 0;
@@ -47,18 +35,21 @@ int main(int argc, char * argv[]){
         pirata1 = (rand()% (n-2)) + 1;
         pirata2 = (rand()% (n-2)) + 1;
     }
-    int a = pirata1;
-    int b = pirata2;
-    
-        for (int i = 0; i < n; i++){
+}
+
+int imprimir_tablero (int n,int Tablero[n][n] ){
+    for (int i = 0; i < n; i++){
         for(int j=0;j < n; j++){
             printf("%d ", Tablero[i][j]);
         }
         printf("\n");
    }
+}
 
-while (intentos <= 50) {
-   
+int buscar_tesoro (int n,int Tablero[n][n],int pirata, int pirata1, int pirata2, int tesoro1, int tesoro2,int intentos){
+    while (intentos <= 50) {
+    int a = pirata1;
+    int b = pirata2;
     printf("\nintento Nº%d\n", intentos);
     printf("\n");
     intentos++;
@@ -106,8 +97,8 @@ while (intentos <= 50) {
        return 0;
    }
    if(Tablero[pirata1][pirata2] == Tablero[0][pirata2] || Tablero[pirata1][pirata2] == Tablero[n-1][pirata2] || Tablero[pirata1][pirata2] == Tablero[pirata1][0] || Tablero[pirata1][pirata2] == Tablero[pirata1][n-1]){
-       puts("Perdiste por pisar el agua");
-       return 0;
+        puts("Perdiste por pisar el agua");
+        return 0;
    }
    if(pirata1 == tesoro1 && pirata2 == tesoro2){
        puts("Ganaste");
@@ -115,4 +106,23 @@ while (intentos <= 50) {
    }
 }
    return 0;
+
+}
+
+int main(int argc, char * argv[]){
+    srand(time(NULL));
+    int n;
+    printf("Elija el tamaño (minimo 4x4) del tablero: ");
+    scanf("%d", &n);
+    int pirata = 3;
+    int pirata1 = (rand()% (n-2)) + 1;
+    int pirata2 = (rand()% (n-2)) + 1;
+    int tesoro1 = (rand()% (n-2)) + 1;
+    int tesoro2 = (rand()% (n-2)) + 1;
+    int intentos = 1;
+    int Tablero [n][n];
+
+    crear_tablero (n, Tablero,pirata, pirata1, pirata2, tesoro1, tesoro2);
+    imprimir_tablero (n,Tablero);
+    buscar_tesoro (n, Tablero,pirata, pirata1, pirata2, tesoro1, tesoro2, intentos);
 }
