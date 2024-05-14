@@ -4,10 +4,6 @@
 
 
 int crear_tablero(int n,int Tablero[n][n],int pirata, int pirata1, int pirata2, int tesoro1, int tesoro2){
-    if(n < 4) {
-        puts("Error, ponga un numero valido");
-        return 0;
-    }
     
     printf("0: Agua\n 1: Tierra\n 2: Puentes\n 3: Pirata\n \n");
 
@@ -114,6 +110,10 @@ int main(int argc, char * argv[]){
     int n;
     printf("Elija el tamaño (minimo 4x4) del tablero: ");
     scanf("%d", &n);
+    if(n < 4) {
+        puts("Error, ponga un numero valido");
+        return 0;
+    }
     int pirata = 3;
     int pirata1 = (rand()% (n-2)) + 1;
     int pirata2 = (rand()% (n-2)) + 1;
