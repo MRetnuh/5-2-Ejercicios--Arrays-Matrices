@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <limits.h>
+int main() {
+   int n;
+   int maximo = INT_MIN;
+   int a[10];
+   puts("Ingrese 10 numeros");
+   for(int i = 0; i < 10; i++){
+       scanf("%d", &n);
+       a[i] = n;
+       if(maximo < n){
+           maximo = n;
+       }
+   }
+   printf("El numero mayor entre todos es %d\n", maximo);
+   return 0;
+}
