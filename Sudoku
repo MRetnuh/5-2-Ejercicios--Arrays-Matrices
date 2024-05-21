@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main(){
+    int m[3][3];
+    int probabilidad0 = 3;
+    srand(time(NULL));
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            int r = random() % (10 + probabilidad0);
+            if(r < probabilidad0){
+                m[i][j] = 0;
+            }
+            else{
+                m[i][j] = r - 3;
+            }
+            printf("%d ", m[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
