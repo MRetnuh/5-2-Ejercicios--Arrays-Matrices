@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+   int n;
+   int a[10];
+   puts("Ingrese 10 numeros");
+   for(int i = 0; i < 10; i++){
+       scanf("%d", &n);
+       a[i] = n;
+     }
+     for(int i = 0; i < 10/2; i++){
+         int j = 10 - 1 - i;
+         int t = a[i];
+    a[i] = a[j];
+a[j] = t;
+     }
+     for(int i = 0; i < 10; i++){
+         printf("%d ", a[i]);
+     }
+     printf("\n");
+    return 0;
+}
