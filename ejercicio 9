@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <math.h>
+int main() {
+   int v1,v2,v3,v4;
+   puts("Ingrese las coordenadas del vector 1: ");
+   scanf("%d %d", &v1, &v2);
+   puts("Ingrese las coordenadas del vector 2: ");
+    scanf("%d %d", &v3, &v4);
+    double diferencia = sqrt((v3 - v1)*(v3 - v1) + (v4 - v2)*(v4 - v2));
+    printf("La diferencia entre los vectores es %.2f\n", diferencia);
+    return 0;
+}
