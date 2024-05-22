@@ -2,11 +2,13 @@
 #define RED     "\x1b[31m"
 #define BLUE    "\x1b[34m"
 #define RESET   "\x1b[0m"
+//se define el include junto a los define que nos permiten utilizar colores a traves del codigo ANSI
 int main() {
    int fila1, columna1;
    int fila2, columna2;
    puts("Partida de ta te ti");
    char ttt[3][3];
+//Se definen las variables fila1 y columna1 (jugador 1), fila2 y columna2 (jugador2),y la matriz que equivale al tablero
    for(int i = 0; i < 3; i++){
        for(int j = 0; j < 3; j++){
            ttt[i][j] = '*';
@@ -14,13 +16,16 @@ int main() {
        }
        printf("\n");
    }
+//el for imprime la matriz con puros *
    while(ttt[0][0] == '*' || ttt[0][1] == '*' || ttt[0][2] == '*' || ttt[1][0] == '*' || ttt[1][1] == '*' || ttt[1][2] == '*' || ttt[2][0] == '*' || ttt[2][1] == '*' || ttt[2][2] == '*'){
    puts("Turno jugador 1 (X). Elija fila y columna:");
    scanf("%d %d", &fila1, &columna1);
+//mientras que al menos una casilla valga * los jugadores tendran turnos para definir su posicion
    if(fila1 > 2 || columna1 > 2){
        puts("Numero invalido");
        return 0;
    }
+//si el valor de una de las dos variables es mayor a 2, se lo toma como invalido
    if(ttt[fila1][columna1] == 'O' || ttt[fila1][columna1] == 'X'){
        puts("Casilla ocupada");
        puts("Vuelva a elegir");
@@ -35,6 +40,7 @@ int main() {
    else{
    ttt[fila1][columna1] = 'X';
    }
+//en el turno del jugador1, si este elige una casilla ocupada, se lo notificara y podra volver a elegir. Si no es el caso, la casilla elegida valdra X
    puts("Turno jugador 2 (O). Elija fila y columna:");
    scanf("%d %d", &fila2, &columna2);
     if(fila2 > 2 || columna2 > 2){
@@ -55,6 +61,7 @@ int main() {
    else{
    ttt[fila2][columna2] = 'O';
    }
+//en el turno del jugador2, si este elige una casilla ocupada, se lo notificara y podra volver a elegir. Si no es el caso, la casilla elegida valdra O
    for(int i = 0; i < 3; i++){
        for(int j = 0; j < 3; j++){
            if(ttt[i][j] == 'X'){
@@ -69,6 +76,7 @@ int main() {
        }
        printf("\n");
    }
+//se imprime la matriz actualizada y el color de X es rojo y el de O es azul
    if((ttt[0][0] == 'X' && ttt[1][1] == 'X' && ttt[2][2] == 'X') || (ttt[1][0] == 'X' && ttt[1][1] == 'X' && ttt[1][2] == 'X') ||(ttt[0][0] == 'X' && ttt[0][1] == 'X' && ttt[0][2] == 'X') || (ttt[2][0] == 'X' && ttt[2][1] == 'X' && ttt[2][2] == 'X') || (ttt[0][0] == 'X' && ttt[1][0] == 'X' && ttt[2][0] == 'X') ||(ttt[0][1] == 'X' && ttt[1][1] == 'X' && ttt[2][1] == 'X') ||(ttt[0][2] == 'X' && ttt[1][2] == 'X' && ttt[2][2] == 'X') ||(ttt[0][2] == 'X' && ttt[1][1] == 'X' && ttt[2][0] == 'X')){
        puts("Gano el jugador 1");
        return 0;
@@ -77,6 +85,7 @@ int main() {
        puts("Gano el jugador 2");
        return 0;
    }
+//si uno de los dos consigue ganar, se lo avisa y termina el codigo
    }
    return 0;
 
