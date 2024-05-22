@@ -1,5 +1,7 @@
 #include <stdio.h>
-
+#define RED     "\x1b[31m"
+#define BLUE    "\x1b[34m"
+#define RESET   "\x1b[0m"
 int main() {
    int fila1, columna1;
    int fila2, columna2;
@@ -19,7 +21,7 @@ int main() {
        puts("Numero invalido");
        return 0;
    }
-   if(ttt[fila1][columna1] == 'O'){
+   if(ttt[fila1][columna1] == 'O' || ttt[fila1][columna1] == 'X'){
        puts("Casilla ocupada");
        puts("Vuelva a elegir");
        int FI1, FC1;
@@ -39,7 +41,7 @@ int main() {
        puts("Numero invalido");
        return 0;
    }
-    if(ttt[fila2][columna2] == 'X'){
+    if(ttt[fila2][columna2] == 'X' || ttt[fila2][columna2] == 'O'){
         puts("Casilla ocupada");
        puts("Vuelva a elegir");
        int FI2, FC2;
@@ -55,7 +57,15 @@ int main() {
    }
    for(int i = 0; i < 3; i++){
        for(int j = 0; j < 3; j++){
-           printf("%c ", ttt[i][j]);
+           if(ttt[i][j] == 'X'){
+           printf(RED "%c " RESET, ttt[i][j]);
+           }
+           else if(ttt[i][j] == 'O'){
+           printf(BLUE "%c " RESET, ttt[i][j]);
+       }
+       else{
+           printf("%c ",ttt[i][j]);
+       }
        }
        printf("\n");
    }
@@ -69,4 +79,5 @@ int main() {
    }
    }
    return 0;
+
 }
