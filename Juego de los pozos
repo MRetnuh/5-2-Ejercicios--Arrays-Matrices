@@ -36,29 +36,29 @@ int main(){
             k = m[fila - 1][columna];
             m[fila -1][columna] = jugador;
             m[a][b] = k;
-            a = fila -1;
-            b = columna; 
+            fila = a -1;
+            columna = b; 
         } //sur 
          if (direccion == 2) {
           k = m[fila + 1][columna];
             m[fila +1][columna] = jugador;
             m[a][b] = k;
-            a = fila +1;
-            b = columna; 
+            fila = a +1;
+            columna = b; 
       } //este 
         if (direccion == 3) {          
            k = m[fila][columna +1];
             m[fila][columna +1] = jugador;
             m[a][b] = k;
-            a = fila;
-            b = columna +1; 
+            fila = a;
+            columna = b +1; 
         } //oeste 
         if (direccion == 4) {
          k = m[fila][columna -1];
             m[fila][columna -1] = jugador;
             m[a][b] = k;
-            a = fila;
-            b = columna -1; 
+            fila = a;
+            columna = b -1; 
         } //mensaje de error
         else if (direccion > 4){
             puts("Opcion invalida");
