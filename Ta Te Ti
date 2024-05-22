@@ -12,27 +12,43 @@ int main() {
        }
        printf("\n");
    }
-   while(ttt[0][0] == '*' || ttt[0][1] == '*' || ttt[0][2] == '*' || ttt[1][0] == '*' || ttt[1][2] == '*' || ttt[1][2] == '*' || ttt[1][2] == '*' || ttt[2][0] == '*' || ttt[2][1] == '*' || ttt[2][2] == '*'){
+   while(ttt[0][0] == '*' || ttt[0][1] == '*' || ttt[0][2] == '*' || ttt[1][0] == '*' || ttt[1][1] == '*' || ttt[1][2] == '*' || ttt[2][0] == '*' || ttt[2][1] == '*' || ttt[2][2] == '*'){
    puts("Turno jugador 1 (X). Elija fila y columna:");
    scanf("%d %d", &fila1, &columna1);
-   if(fila1 > 3 || columna1 > 3){
+   if(fila1 > 2 || columna1 > 2){
        puts("Numero invalido");
        return 0;
    }
    if(ttt[fila1][columna1] == 'O'){
        puts("Casilla ocupada");
+       puts("Vuelva a elegir");
+       int FI1, FC1;
+       scanf("%d %d", &FI1, &FC1);
+       if(FI1 > 2 || FC1 > 2){
+       puts("Numero invalido");
+       return 0;
+   }
+       ttt[FI1][FC1] = 'X';
    }
    else{
    ttt[fila1][columna1] = 'X';
    }
    puts("Turno jugador 2 (O). Elija fila y columna:");
    scanf("%d %d", &fila2, &columna2);
-    if(fila2 > 3 || columna2 > 3){
+    if(fila2 > 2 || columna2 > 2){
        puts("Numero invalido");
        return 0;
    }
     if(ttt[fila2][columna2] == 'X'){
-       puts("Casilla ocupada");
+        puts("Casilla ocupada");
+       puts("Vuelva a elegir");
+       int FI2, FC2;
+       scanf("%d %d", &FI2, &FC2);
+       if(FI2 > 2 || FC2 > 2){
+       puts("Numero invalido");
+       return 0;
+   }
+       ttt[FI2][FC2] = 'O';
    }
    else{
    ttt[fila2][columna2] = 'O';
