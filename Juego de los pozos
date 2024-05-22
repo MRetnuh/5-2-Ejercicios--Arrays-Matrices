@@ -1,0 +1,16 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main(){
+    int m[10][10];
+    srand(time(NULL));
+    for(int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            m[i][j] = random() % 2;
+            printf("%d ", m[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
