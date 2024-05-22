@@ -65,7 +65,7 @@ int main(){
             printf("\n");
             return 0;
         }
-        if(m[fila][columna] == 0){
+        if(m[a][b] == 0){
             vidas++;
         }
         if(m[fila][columna] == m[9][9]){
