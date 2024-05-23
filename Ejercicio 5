@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+int main() {
+   int n;
+   int a[2][2];
+   int b[2][2];
+   int m;
+   puts("Ingrese 8 valores para la matriz A y B");
+   for(int i = 0; i < 2; i++){
+       for(int j = 0; j < 2; j++){
+          scanf("%d %d", &n, &m); 
+          a[i][j] = n;
+          b[i][j] = m;
+          printf("%d ",a[i][j] * b[i][j]);
+       }
+       printf("\n");
+   }
+  
+    return 0;
+}
