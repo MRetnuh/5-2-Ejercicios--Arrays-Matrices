@@ -1,0 +1,24 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+   int n;
+   int a[2][2];
+   puts("Ingrese 4 valores para una matriz 2x2");
+   for(int i = 0; i < 2; i++){
+       for(int j = 0; j < 2; j++){
+          scanf("%d", &n); 
+          a[i][j] = n;
+       }
+   }
+   int k = a[0][1];
+   a[0][1] = a[1][0];
+   a[1][0] = k;
+    for(int i = 0; i < 2; i++){
+       for(int j = 0; j < 2; j++){
+           printf("%d ", a[i][j]);
+       }
+       printf("\n");
+    }
+    return 0;
+}
