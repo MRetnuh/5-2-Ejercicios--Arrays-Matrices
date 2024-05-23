@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int main() {
+   int v1,v2,v3,v4;
+   puts("Ingrese las coordenadas del vector 1: ");
+   scanf("%d %d", &v1, &v2);
+   puts("Ingrese las coordenadas del vector 2: ");
+    scanf("%d %d", &v3, &v4);
+    double producto = (v4 * v1) - (v3 * v2);
+    printf("El producto vectorial entre los vectores es %.2f\n", producto);
+    return 0;
+}
