@@ -1,0 +1,21 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+   int mes;
+   int a[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+   puts("Ingrese el numero del mes");
+   scanf("%d", &mes);
+   if(mes < 0 || mes > 12){
+       puts("Ingrese un numero valido");
+       return 0;
+   }
+   if(a[mes + 1] == 30){
+       puts("Ese mes tiene 30 dias");
+   }
+    else{
+       puts("No tiene 30 dias");
+   }
+   
+    return 0;
+}
