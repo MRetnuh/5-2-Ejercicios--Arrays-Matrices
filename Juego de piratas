@@ -65,6 +65,7 @@ int buscar_tesoro (int n,int Tablero[n][n],int pirata, int pirata1, int pirata2,
     //se crea la variable opcionDireccion pidiendole al usuario que elija una opcion para poder identificar el movimiento del pirata
     //en caso de que el numero no este en las opciones salta un error
     int opcionDireccion;
+    if(intentos >= 1){
     printf("Elija una opcion\n 1)Norte\n 2)Sur\n 3)Este\n 4)Oeste:\n");
      scanf("%d", &opcionDireccion);
         //norte
@@ -99,7 +100,7 @@ int buscar_tesoro (int n,int Tablero[n][n],int pirata, int pirata1, int pirata2,
         }
         a=pirata1;
         b=pirata2;
-    
+    }
     //actualizacion de posicion del pirata
     for (int i = 0; i < n; i++){
         for(int j=0;j < n; j++){
@@ -150,7 +151,7 @@ int main(int argc, char * argv[]){
     int pirata2 = (rand()% (n-2)) + 1;
     int tesoro1 = (rand()% (n-2)) + 1;
     int tesoro2 = (rand()% (n-2)) + 1;
-    int intentos = 1;
+    int intentos = 0;
     int Tablero [n][n];
     //llamadas a las funciones
     crear_tablero (n, Tablero,pirata, pirata1, pirata2, tesoro1, tesoro2);
