@@ -40,6 +40,20 @@ int main() {
    else{
    ttt[fila1][columna1] = 'X';
    }
+    for(int i = 0; i < 3; i++){
+       for(int j = 0; j < 3; j++){
+           if(ttt[i][j] == 'X'){
+           printf(RED "%c " RESET, ttt[i][j]);
+           }
+           else if(ttt[i][j] == 'O'){
+           printf(BLUE "%c " RESET, ttt[i][j]);
+       }
+       else{
+           printf("%c ",ttt[i][j]);
+       }
+       }
+       printf("\n");
+   }
 //en el turno del jugador1, si este elige una casilla ocupada, se lo notificara y podra volver a elegir. Si no es el caso, la casilla elegida valdra X
    puts("Turno jugador 2 (O). Elija fila y columna:");
    scanf("%d %d", &fila2, &columna2);
@@ -61,8 +75,7 @@ int main() {
    else{
    ttt[fila2][columna2] = 'O';
    }
-//en el turno del jugador2, si este elige una casilla ocupada, se lo notificara y podra volver a elegir. Si no es el caso, la casilla elegida valdra O
-   for(int i = 0; i < 3; i++){
+    for(int i = 0; i < 3; i++){
        for(int j = 0; j < 3; j++){
            if(ttt[i][j] == 'X'){
            printf(RED "%c " RESET, ttt[i][j]);
@@ -76,6 +89,8 @@ int main() {
        }
        printf("\n");
    }
+//en el turno del jugador2, si este elige una casilla ocupada, se lo notificara y podra volver a elegir. Si no es el caso, la casilla elegida valdra O
+ 
 //se imprime la matriz actualizada y el color de X es rojo y el de O es azul
    if((ttt[0][0] == 'X' && ttt[1][1] == 'X' && ttt[2][2] == 'X') || (ttt[1][0] == 'X' && ttt[1][1] == 'X' && ttt[1][2] == 'X') ||(ttt[0][0] == 'X' && ttt[0][1] == 'X' && ttt[0][2] == 'X') || (ttt[2][0] == 'X' && ttt[2][1] == 'X' && ttt[2][2] == 'X') || (ttt[0][0] == 'X' && ttt[1][0] == 'X' && ttt[2][0] == 'X') ||(ttt[0][1] == 'X' && ttt[1][1] == 'X' && ttt[2][1] == 'X') ||(ttt[0][2] == 'X' && ttt[1][2] == 'X' && ttt[2][2] == 'X') ||(ttt[0][2] == 'X' && ttt[1][1] == 'X' && ttt[2][0] == 'X')){
        puts("Gano el jugador 1");
