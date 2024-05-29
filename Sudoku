@@ -1,121 +1,136 @@
-#include <stdio.h>  // Incluye la biblioteca estándar de entrada/salida
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-#define N 9  // Define la constante N como 9, que es el tamaño del tablero de Sudoku
+#define N 9
 
-// Función para imprimir el tablero de Sudoku
 void imprimirTablero(int tablero[N][N]) {
     for (int i = 0; i < N; i++) {
-        // Imprime una línea divisoria cada 3 filas (excepto la primera)
         if (i % 3 == 0 && i != 0) {
             printf("--------------------------------\n");
         }
         for (int j = 0; j < N; j++) {
-            // Imprime una barra vertical cada 3 columnas (excepto la primera)
             if (j % 3 == 0 && j != 0) {
                 printf(" |");
             }
-            printf(" %2d", tablero[i][j]);  // Imprime el valor de la celda con un ancho de 2 caracteres
+            printf(" %2d", tablero[i][j]);
         }
         printf("\n");
     }
 }
 
-// Verifica si un número puede colocarse en una posición específica
 int esValido(int tablero[N][N], int fila, int columna, int numero) {
-    int inicioFila = fila - fila % 3, inicioColumna = columna - columna % 3;  // Calcula el inicio del subcuadro 3x3
+    int inicioFila = fila - fila % 3, inicioColumna = columna - columna % 3;
     for (int i = 0; i < N; i++) {
-        // Verifica si el número ya está en la fila, columna o subcuadro
         if (tablero[fila][i] == numero || tablero[i][columna] == numero || 
             tablero[inicioFila + i / 3][inicioColumna + i % 3] == numero) {
-            return 0;  // Número no es válido
+            return 0;
         }
     }
-    return 1;  // Número es válido
+    return 1;
 }
 
-// Función recursiva para resolver el Sudoku usando backtracking
 int resolverSudoku(int tablero[N][N]) {
     for (int fila = 0; fila < N; fila++) {
         for (int columna = 0; columna < N; columna++) {
-            if (tablero[fila][columna] == 0) {  // Encuentra una celda vacía
-                for (int num = 1; num <= 9; num++) {  // Intenta colocar números del 1 al 9
-                    if (esValido(tablero, fila, columna, num)) {  // Verifica si el número es válido
-                        tablero[fila][columna] = num;  // Coloca el número en la celda
-                        if (resolverSudoku(tablero)) {  // Llama recursivamente
-                            return 1;  // Sudoku resuelto
+            if (tablero[fila][columna] == 0) {
+                int numeros[N] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+                // Barajar los números
+                for (int i = N-1; i > 0; i--) {
+                    int j = rand() % (i + 1);
+                    int temp = numeros[i];
+                    numeros[i] = numeros[j];
+                    numeros[j] = temp;
+                }
+                for (int k = 0; k < N; k++) {
+                    if (esValido(tablero, fila, columna, numeros[k])) {
+                        tablero[fila][columna] = numeros[k];
+                        if (resolverSudoku(tablero)) {
+                            return 1;
                         }
-                        tablero[fila][columna] = 0;  // Deshace el cambio si no se resuelve
+                        tablero[fila][columna] = 0;
                     }
                 }
-                return 0;  // No se puede colocar ningún número válido en la celda
+                return 0;
             }
         }
     }
-    return 1;  // Tablero resuelto
+    return 1;
 }
 
-// Verifica si el tablero de Sudoku está completo
+void crearTablero(int tablero[N][N]) {
+    // Inicializar el tablero con ceros
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            tablero[i][j] = 0;
+        }
+    }
+
+    // Generar un tablero completo y válido usando backtracking
+    resolverSudoku(tablero);
+
+    // Remover números aleatoriamente para crear espacios vacíos
+    srand(time(NULL));
+    int ceros = 40 + rand() % 11; // Remover entre 40 y 50 números aleatoriamente
+    for (int i = 0; i < ceros; i++) {
+        int fila = rand() % N;
+        int columna = rand() % N;
+        while (tablero[fila][columna] == 0) {
+            fila = rand() % N;
+            columna = rand() % N;
+        }
+        tablero[fila][columna] = 0;
+    }
+}
+
 int tableroCompleto(int tablero[N][N]) {
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             if (tablero[i][j] == 0) {
-                return 0;  // Hay celdas vacías, tablero no está completo
+                return 0;
             }
         }
     }
-    return 1;  // No hay celdas vacías, tablero está completo
+    return 1;
 }
 
 int main() {
-    int tablero[N][N] = {  // Define e inicializa el tablero de Sudoku
-        {5, 3, 0, 0, 7, 0, 0, 0, 0},
-        {6, 0, 0, 1, 9, 5, 0, 0, 0},
-        {0, 9, 8, 0, 0, 0, 0, 6, 0},
-        {8, 0, 0, 0, 6, 0, 0, 0, 3},
-        {4, 0, 0, 8, 0, 3, 0, 0, 1},
-        {7, 0, 0, 0, 2, 0, 0, 0, 6},
-        {0, 6, 0, 0, 0, 0, 2, 8, 0},
-        {0, 0, 0, 4, 1, 9, 0, 0, 5},
-        {0, 0, 0, 0, 8, 0, 0, 7, 9}
-    };
+    int tablero[N][N] = {0};
+    crearTablero(tablero);
+    printf("Tablero inicial:\n");
+    imprimirTablero(tablero);
 
-    printf("Tablero inicial:\n");  // Imprime el mensaje del tablero inicial
-    imprimirTablero(tablero);  // Llama a la función para imprimir el tablero inicial
+    int intentos = 3;
+    int fila, columna, numero;
 
-    int fila, columna, numero;  // Declara las variables para fila, columna y número ingresados por el usuario
-    // Bucle para solicitar movimientos al usuario mientras el tablero no esté completo
     while (tableroCompleto(tablero) == 0) {
-        printf("Ingrese fila (1-9), columna (1-9) y número (1-9): ");  // Solicita al usuario que ingrese fila, columna y número
-        scanf("%d %d %d", &fila, &columna, &numero);  // Lee los valores ingresados por el usuario
-        fila--; columna--;  // Convierte los valores de 1-9 a 0-8
+        printf("Ingrese fila (1-9), columna (1-9) y número (1-9): ");
+        scanf("%d %d %d", &fila, &columna, &numero);
 
-        // Verifica si la celda está vacía y si el número es válido
+        if (fila < 1 || fila > 9 || columna < 1 || columna > 9 || numero < 1 || numero > 9) {
+            printf("Ingrese números válidos\n");
+            puts("Introduzca valores: ");
+            scanf("%d %d %d", &fila, &columna, &numero);
+        }
+
+        fila--; 
+        columna--;
+
         if (tablero[fila][columna] == 0 && esValido(tablero, fila, columna, numero)) {
-            tablero[fila][columna] = numero;  // Coloca el número en la celda
-            printf("\nMovimiento válido. Tablero actual:\n");  // Imprime el mensaje de movimiento válido
-            imprimirTablero(tablero);  // Imprime el tablero actualizado
+            tablero[fila][columna] = numero;
+            printf("\nMovimiento válido. Tablero actual:\n");
+            imprimirTablero(tablero);
         } else {
-            printf("\nMovimiento inválido. Intente de nuevo.\n");  // Imprime el mensaje de movimiento inválido
+            printf("\nMovimiento inválido. Intente de nuevo.\n");
+            intentos--;
+        }
+
+        if (intentos == 0) {
+            printf("Perdiste. Se acabaron los intentos.\n");
+            return 0;
         }
     }
 
-    printf("\n¡Felicidades completaste el Sudoku!\n");  // Imprime el mensaje de felicitaciones
-    return 0;  // Retorna 0 indicando que el programa finalizó correctamente
+    printf("\n¡Felicidades completaste el Sudoku!\n");
+    return 0;
 }
-
-
-/*Solucion de Sudoku
-
- 5 3 2 | 6 7 8 | 9 1 4
- 6 1 7 | 1 9 5 | 3 4 8
- 4 9 8 | 3 4 2 | 1 6 7
------------------------
- 8 5 1 | 7 6 4 | 2 9 3
- 4 2 6 | 8 5 3 | 7 9 1
- 7 3 9 | 2 2 1 | 8 5 6
------------------------
- 9 6 4 | 5 3 7 | 2 8 1
- 2 8 3 | 4 1 9 | 6 7 5
- 1 7 5 | 9 8 6 | 4 3 2
- 
-*/
