@@ -34,17 +34,9 @@ int resolverSudoku(int tablero[N][N]) {
     for (int fila = 0; fila < N; fila++) {
         for (int columna = 0; columna < N; columna++) {
             if (tablero[fila][columna] == 0) {
-                int numeros[N] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-                // Barajar los números
-                for (int i = N-1; i > 0; i--) {
-                    int j = rand() % (i + 1);
-                    int temp = numeros[i];
-                    numeros[i] = numeros[j];
-                    numeros[j] = temp;
-                }
-                for (int k = 0; k < N; k++) {
-                    if (esValido(tablero, fila, columna, numeros[k])) {
-                        tablero[fila][columna] = numeros[k];
+                for (int num = 1; num <= 9; num++) {
+                    if (esValido(tablero, fila, columna, num)) {
+                        tablero[fila][columna] = num;
                         if (resolverSudoku(tablero)) {
                             return 1;
                         }
@@ -59,7 +51,6 @@ int resolverSudoku(int tablero[N][N]) {
 }
 
 void crearTablero(int tablero[N][N]) {
-    // Inicializar el tablero con ceros
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             tablero[i][j] = 0;
@@ -108,9 +99,8 @@ int main() {
         scanf("%d %d %d", &fila, &columna, &numero);
 
         if (fila < 1 || fila > 9 || columna < 1 || columna > 9 || numero < 1 || numero > 9) {
-            printf("Ingrese números válidos\n");
-            puts("Introduzca valores: ");
-            scanf("%d %d %d", &fila, &columna, &numero);
+            printf("Ingrese números válidos (1-9) para fila, columna y número.\n");
+            continue; // No disminuir intentos, solo pedir números válidos nuevamente
         }
 
         fila--; 
