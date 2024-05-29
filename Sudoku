@@ -13,7 +13,11 @@ void imprimirTablero(int tablero[N][N]) {
             if (j % 3 == 0 && j != 0) {
                 printf(" |");
             }
-            printf(" %2d", tablero[i][j]);
+            if (tablero[i][j] == 0) {
+                printf("   ");
+            } else {
+                printf(" %2d", tablero[i][j]);
+            }
         }
         printf("\n");
     }
@@ -34,9 +38,9 @@ int resolverSudoku(int tablero[N][N]) {
     for (int fila = 0; fila < N; fila++) {
         for (int columna = 0; columna < N; columna++) {
             if (tablero[fila][columna] == 0) {
-                for (int num = 1; num <= 9; num++) {
-                    if (esValido(tablero, fila, columna, num)) {
-                        tablero[fila][columna] = num;
+                for (int numero = 1; numero <= 9; numero++) {
+                    if (esValido(tablero, fila, columna, numero)) {
+                        tablero[fila][columna] = numero;
                         if (resolverSudoku(tablero)) {
                             return 1;
                         }
@@ -50,20 +54,9 @@ int resolverSudoku(int tablero[N][N]) {
     return 1;
 }
 
-void crearTablero(int tablero[N][N]) {
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            tablero[i][j] = 0;
-        }
-    }
-
-    // Generar un tablero completo y válido usando backtracking
-    resolverSudoku(tablero);
-
-    // Remover números aleatoriamente para crear espacios vacíos
+void backtracking(int tablero[N][N], int numCeros) {
     srand(time(NULL));
-    int ceros = 40 + rand() % 11; // Remover entre 40 y 50 números aleatoriamente
-    for (int i = 0; i < ceros; i++) {
+    for (int i = 0; i < numCeros; i++) {
         int fila = rand() % N;
         int columna = rand() % N;
         while (tablero[fila][columna] == 0) {
@@ -71,6 +64,32 @@ void crearTablero(int tablero[N][N]) {
             columna = rand() % N;
         }
         tablero[fila][columna] = 0;
+    }
+}
+
+void crearTablero(int tablero[N][N], int dificultad) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            tablero[i][j] = 0;
+        }
+    }
+
+    resolverSudoku(tablero);
+
+
+    switch (dificultad) {
+        case 1: // Fácil
+            backtracking(tablero, 40 + rand() % 10); 
+            break;
+        case 2: // Normal
+            backtracking(tablero, 30 + rand() % 10); 
+            break;
+        case 3: // Difícil
+            backtracking(tablero, 18 + rand() % 10); 
+            break;
+        default: //normal por si pone una opcion no disponible
+            backtracking(tablero, 30 + rand() % 10); 
+            break;
     }
 }
 
@@ -87,20 +106,26 @@ int tableroCompleto(int tablero[N][N]) {
 
 int main() {
     int tablero[N][N] = {0};
-    crearTablero(tablero);
+    printf("Seleccione la dificultad:\n");
+    printf("1. Fácil\n");
+    printf("2. Normal\n");
+    printf("3. Difícil\n");
+    int dificultad;
+    scanf("%d", &dificultad);
+    crearTablero(tablero, dificultad);
     printf("Tablero inicial:\n");
     imprimirTablero(tablero);
 
     int intentos = 3;
     int fila, columna, numero;
 
-    while (tableroCompleto(tablero) == 0) {
+    while (tableroCompleto(tablero) == 0 && intentos > 0) {
         printf("Ingrese fila (1-9), columna (1-9) y número (1-9): ");
         scanf("%d %d %d", &fila, &columna, &numero);
 
         if (fila < 1 || fila > 9 || columna < 1 || columna > 9 || numero < 1 || numero > 9) {
-            printf("Ingrese números válidos (1-9) para fila, columna y número.\n");
-            continue; // No disminuir intentos, solo pedir números válidos nuevamente
+            printf("Ingrese números válidos\n");
+            continue;
         }
 
         fila--; 
@@ -121,6 +146,9 @@ int main() {
         }
     }
 
-    printf("\n¡Felicidades completaste el Sudoku!\n");
+    if (tableroCompleto(tablero)) {
+        printf("\n¡Felicidades completaste el Sudoku!\n");
+    }
+    
     return 0;
 }
