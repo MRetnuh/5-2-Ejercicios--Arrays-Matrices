@@ -3,17 +3,25 @@
 #include <time.h>
 #include <stdlib.h>
 #include<string.h>
-
-int main() {
+void bienvenida(char nombre[20]){
+    while(1){
+        puts("Bienvenido jugador. Ingrese su nombre: ");
+        scanf("%s", nombre);
+        system("clear");
+        break;
+    }
+}
+int main(int argc, char *argv[]) {
     char mazmorra1[15][15];
     char mazmorra2[20][20];
     char mazmorra3[30][30];
     char *controles;
     int opcion;
+    char nombre[20];
   printf("┌─────────────────────────────────┐\n");
     printf("│           Juego de Mazmorras          │ \n"); // Texto mas grande
     printf("└─────────────────────────────────┘\n");
-    
+    bienvenida(nombre);
      printf("  Menu:\n");
     printf("  1. Jugar\n");
     printf("  2. Reglas\n");
