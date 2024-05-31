@@ -1,4 +1,4 @@
-// Online C compiler to run C program online
+  // Online C compiler to run C program online
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -18,9 +18,9 @@ int main(int argc, char *argv[]) {
     char *controles;
     int opcion;
     char nombre[20];
-  printf("┌─────────────────────────────────┐\n");
-    printf("│           Juego de Mazmorras          │ \n"); // Texto mas grande
-    printf("└─────────────────────────────────┘\n");
+  puts("┌──────────────────────────────────────┐");
+    puts("│           Juego de Mazmorra           │ "); // Texto mas grande
+    puts("└───────────────────────────────────────┘");
     bienvenida(nombre);
      puts("  Menu:");
     puts("  1. Jugar");
@@ -51,7 +51,21 @@ int main(int argc, char *argv[]) {
       puts("│  tus capacidades, como la      │");
       puts("│  vida o la fuerza              │");
       puts("└────────────────────────────────┘");
-        
+      puts("Presiona Enter para salir");
+      getchar();
+       break; 
+     case 3: 
+      system("clear");
+             puts("        ┌─────┐               w: moverte hacia arriba");
+             puts("        │  w  │");
+             puts("        └─────┘               a: moverte hacia la izquierda");
+     puts("┌─────┐ ┌─────┐  ┌─────┐"); 
+     puts("│  a  │ │  s  │  │  d  │      s: moverte hacia abajo");
+     puts("└─────┘ └─────┘  └─────┘");
+     
+             puts("                              d: moverte hacia la derecha");
+     break;
     }
+        
 }
     
