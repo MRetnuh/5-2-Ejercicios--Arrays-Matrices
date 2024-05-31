@@ -1,4 +1,5 @@
-  // Online C compiler to run C program online
+// podriamos usar las ── y │ como paredes
+// che, recomiendo que cuando cada uno actualice su codigo, ponga sus ideas que aun no puso y explique algunas partes
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -9,6 +10,46 @@ void bienvenida(char nombre[20]){
         scanf("%s", nombre);
         system("clear");
         break;
+    }
+}
+void rellenarMazmorras(char dungeon1[15][15], char dungeon2[20][20], char dungeon3[30][30], int dificultad){
+    srand(time(NULL));
+    int r;
+    for(int i = 0; i < 15; i++){
+        for(int j = 0; j < 15; j++){
+            r = rand() % 10;
+            if(r > dificultad){
+            dungeon1[i][j] = '*';
+            }
+            else{
+               dungeon1[i][j] = (rand() % 1) + 1;  
+            }
+//aca, lo que hice es que de acuerdo a la dificultad, aparecen mas o menos enemigos. A estos los asigne como 1 y 2
+//no me acuerdo si en una matriz de char, pueden aparecer int
+//Todavia no le puse generacion procedural
+        }
+    }
+    for(int i = 0; i < 20; i++){
+        for(int j = 0; j < 20; j++){
+           r = rand() % 10;
+            if(r > dificultad){
+            dungeon2[i][j] = '*';
+            }
+            else{
+               dungeon2[i][j] = (rand() % 1) + 1;  
+            }
+        }
+    }
+    for(int i = 0; i < 30; i++){
+        for(int j = 0; j < 30; j++){
+             r = rand() % 10;
+            if(r > dificultad){
+            dungeon3[i][j] = '*';
+            }
+            else{
+               dungeon3[i][j] = (rand() % 1) + 1;  
+            }
+        }
     }
 }
 int main(int argc, char *argv[]) {
