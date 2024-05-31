@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-#include<string.h>
+#include <string.h>
 void bienvenida(char nombre[20]){
     while(1){
         puts("Bienvenido jugador. Ingrese su nombre: ");
@@ -26,8 +26,9 @@ int main(int argc, char *argv[]) {
     puts("  1. Jugar");
     puts("  2. Reglas");
     puts("  3. Controles");
-    puts("  4. Salir");
-    puts("  5. Enemigos");
+    puts("  4. Enemigos");
+    puts("  5. Items");
+    puts("  6. Salir");
     scanf("%d", &opcion);
     switch(opcion){
         case 1:
@@ -65,7 +66,25 @@ int main(int argc, char *argv[]) {
      
              puts("                              d: moverte hacia la derecha");
      break;
-    }
-        
+     case 4: 
+      system("clear");
+      puts("1: Tiene x cantidad de vida. Te quita x cantidad de vida");
+      puts("2: Tiene x cantidad de vida. Te quita x cantidad de vida");
+      break;
+    case 5:
+    system("clear");
+    puts("3: te da un aumento de vida de x cantidad");
+    puts("4: te da un aumento de vida de x cantidad");
+    break;
+    case 6:
+    system("clear");
+    puts("Saliendo...");
+    break;
+    default:
+    puts("Opcion invalida");
+    break;
+}
+
+return 0;
 }
     
