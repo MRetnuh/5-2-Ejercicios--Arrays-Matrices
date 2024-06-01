@@ -31,6 +31,8 @@ void rellenarMazmorras(int tamañomazmorra, char dungeon[tamañomazmorra][tamañ
             }
         }
     }
+//aca, lo que hice es que de acuerdo a la dificultad, aparecen mas o menos enemigos. Solo existen dos enemigos y son 1 y 2
+//Todavia no le puse generacion procedural
     dungeon[0][0] = '*';
 }
 
