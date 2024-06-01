@@ -4,6 +4,15 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
+
+void limpiar_consola() {
+    printf("\033[H\033[J");
+}
+
+void moverCursor(int fila, int columna) {
+    printf("\033[%d;%dH", fila, columna);
+}
+
 void bienvenida(char nombre[20]){
     while(1){
         puts("Bienvenido jugador. Ingrese su nombre: ");
