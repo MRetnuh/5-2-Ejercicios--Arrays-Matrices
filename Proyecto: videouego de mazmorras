@@ -93,68 +93,63 @@ int movimientos(int Nmazmorra, int tamañomazmorra, char mazmorra[tamañomazmorr
     }
     return 0;
 }
-void opcion2(){
-  limpiar_consola();
-            puts("┌────────────────────────────────┐");
-            puts("│    Reglas del juego:           │");
-            puts("├────────────────────────────────┤");
-            puts("│- Tienes que llegar hasta       │");
-            puts("│  la mazmorra 3 y vencer al     │");
-            puts("│  jefe.                         │");
-            puts("│                                │");
-            puts("│- En cada mazmorra              │");
-            puts("│  habrán enemigos que           │");
-            puts("│  tratarán de matarte           │");
-            puts("│                                │");
-            puts("│- También habrán                │");
-            puts("│  objetos que mejorarán tus     │");
-            puts("│  capacidades, como la vida     │");
-            puts("│  o la fuerza.                  │");
-            puts("└───────────────────────────────┘");
-            puts("Presiona Enter para salir");
-            getchar();
-            limpiar_consola();
-}
-void opcion3(){
-     limpiar_consola();
-            puts("        ┌─────┐               w: moverte hacia arriba");
-            puts("        │  w  │");
-            puts("        └─────┘               a: moverte hacia la izquierda");
-            puts("┌─────┐ ┌─────┐  ┌─────┐");
-            puts("│  a  │ │  s  │  │  d  │      s: moverte hacia abajo");
-            puts("└─────┘ └─────┘  └─────┘");
-            puts("                              d: moverte hacia la derecha");
-            puts("Presiona Enter para salir");
-            getchar();
-            limpiar_consola();
-}
-void opcion4(){
-     limpiar_consola();
-            puts("1: Tiene x cantidad de vida. Te quita x cantidad de vida");
-            puts("2: Tiene x cantidad de vida. Te quita x cantidad de vida");
-            puts("Presiona Enter para salir");
-            getchar();
-            limpiar_consola();
-}
-void opcion5(){
+
+void opcion2() {
     limpiar_consola();
-            puts("3: te da un aumento de vida de x cantidad");
-            puts("4: te da un aumento de vida de x cantidad");
-            puts("Presiona Enter para salir");
-            getchar();
-            limpiar_consola();
-}
-int main(int argc, char *argv[]) {
-    char jugador = '5';
-    char mazmorra1[15][15];
-    int opcion;
-    char nombre[20];
-    puts("┌──────────────────────────────────────┐");
-    puts("│           Juego de Mazmorra           │");
-    puts("└───────────────────────────────────────┘");
-    bienvenida(nombre);
+    puts("┌────────────────────────────────┐");
+    puts("│    Reglas del juego:           │");
+    puts("├────────────────────────────────┤");
+    puts("│- Tienes que llegar hasta       │");
+    puts("│  la mazmorra 3 y vencer al     │");
+    puts("│  jefe.                         │");
+    puts("│                                │");
+    puts("│- En cada mazmorra              │");
+    puts("│  habrán enemigos que           │");
+    puts("│  tratarán de matarte           │");
+    puts("│                                │");
+    puts("│- También habrán                │");
+    puts("│  objetos que mejorarán tus     │");
+    puts("│  capacidades, como la vida     │");
+    puts("│  o la fuerza.                  │");
+    puts("└───────────────────────────────┘");
+    puts("Presiona Enter para salir");
+    getchar();
     limpiar_consola();
-    while(1){
+}
+
+void opcion3() {
+    limpiar_consola();
+    puts("        ┌─────┐               w: moverte hacia arriba");
+    puts("        │  w  │");
+    puts("        └─────┘               a: moverte hacia la izquierda");
+    puts("┌─────┐ ┌─────┐  ┌─────┐");
+    puts("│  a  │ │  s  │  │  d  │      s: moverte hacia abajo");
+    puts("└─────┘ └─────┘  └─────┘");
+    puts("                              d: moverte hacia la derecha");
+    puts("Presiona Enter para salir");
+    getchar();
+    limpiar_consola();
+}
+
+void opcion4() {
+    limpiar_consola();
+    puts("1: Tiene x cantidad de vida. Te quita x cantidad de vida");
+    puts("2: Tiene x cantidad de vida. Te quita x cantidad de vida");
+    puts("Presiona Enter para salir");
+    getchar();
+    limpiar_consola();
+}
+
+void opcion5() {
+    limpiar_consola();
+    puts("3: te da un aumento de vida de x cantidad");
+    puts("4: te da un aumento de vida de x cantidad");
+    puts("Presiona Enter para salir");
+    getchar();
+    limpiar_consola();
+}
+
+void mostrarMenu() {
     puts("  Menú:");
     puts("  1. Jugar");
     puts("  2. Reglas");
@@ -162,35 +157,69 @@ int main(int argc, char *argv[]) {
     puts("  4. Enemigos");
     puts("  5. Items");
     puts("  6. Salir");
-    scanf("%d", &opcion);
-    getchar();
-    switch (opcion) {
-        case 1:
-            limpiar_consola();
-            rellenarMazmorras(15, mazmorra1, 4);
-            movimientos(15, 15, mazmorra1, jugador);
-            break;
-        case 2:
-            opcion2();
-            break;
-        case 3:
-            opcion3();
-            break;
-        case 4:
-            opcion4();
-            break;
-        case 5:
-            opcion5();
-            break;
-        case 6:
-            limpiar_consola();
-            puts("Saliendo...");
-            return 0;
-        default:
-            puts("Opción inválida");
-            break;
-    }
-     while (getchar() != '\n');
 }
+
+int main(int argc, char *argv[]) {
+    char jugador = '5';
+    char mazmorra1[15][15];
+    int opcion;
+    char nombre[20];
+    
+    puts("┌──────────────────────────────────────┐");
+    puts("│           Juego de Mazmorra           │");
+    puts("└───────────────────────────────────────┘");
+    bienvenida(nombre);
+    limpiar_consola();
+    mostrarMenu();
+    
+    while (1) {
+        printf("Ingrese una opción: ");
+        if (scanf("%d", &opcion) != 1) {
+            // Limpiar el buffer de entrada en caso de entrada no válida
+            while (getchar() != '\n');
+            puts("Opción inválida. Por favor, ingrese una opción válida.");
+            continue;
+        }
+        
+        getchar(); // Captura el Enter después de ingresar la opción
+        
+        switch (opcion) {
+            case 1:
+                limpiar_consola();
+                rellenarMazmorras(15, mazmorra1, 4);
+                movimientos(15, 15, mazmorra1, jugador);
+                limpiar_consola();
+                mostrarMenu();
+                break;
+            case 2:
+                opcion2();
+                limpiar_consola();
+                mostrarMenu();
+                break;
+            case 3:
+                opcion3();
+                limpiar_consola();
+                mostrarMenu();
+                break;
+            case 4:
+                opcion4();
+                limpiar_consola();
+                mostrarMenu();
+                break;
+            case 5:
+                opcion5();
+                limpiar_consola();
+                mostrarMenu();
+                break;
+            case 6:
+                limpiar_consola();
+                puts("Saliendo...");
+                return 0;
+            default:
+                puts("Opción inválida. Por favor, ingrese una opción válida.");
+                break;
+        }
+    }
+    
     return 0;
 }
