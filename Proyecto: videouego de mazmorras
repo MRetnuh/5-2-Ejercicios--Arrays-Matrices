@@ -9,13 +9,14 @@
 #define GREEN   "\033[1;32m"
 #define MAGENTA "\033[1;35m"
 #define CYAN    "\033[1;36m"
+#define WHITE   "\033[1;37m"
 void limpiar_consola() {
     printf("\033[H\033[J");
 }
 
 void bienvenida(char nombre[20]) {
     while (1) {
-        puts("Bienvenido jugador. Ingrese su nombre: ");
+        printf(WHITE"Bienvenido jugador. Ingrese su nombre: "RESET);
         scanf("%s", nombre);
         limpiar_consola();
         break;
@@ -119,30 +120,30 @@ void opcion2() {
     printf(BLUE"│  capacidades, como la vida     │\n"RESET);
     printf(BLUE"│  o la fuerza.                  │\n"RESET);
     printf(BLUE"└────────────────────────────────┘\n"RESET);
-    printf("Presiona Enter para salir");
+    printf(WHITE"Presiona Enter para salir\n"RESET);
     getchar();
     limpiar_consola();
 }
 
 void opcion3() {
     limpiar_consola();
-    puts("        ┌─────┐               w: moverte hacia arriba");
-    puts("        │  w  │");
-    puts("        └─────┘               a: moverte hacia la izquierda");
-    puts("┌─────┐ ┌─────┐  ┌─────┐");
-    puts("│  a  │ │  s  │  │  d  │      s: moverte hacia abajo");
-    puts("└─────┘ └─────┘  └─────┘");
-    puts("                              d: moverte hacia la derecha");
-    puts("Presiona Enter para salir");
+    printf(MAGENTA"        ┌─────┐               w: moverte hacia arriba\n"RESET);
+    printf(MAGENTA"        │  w  │\n"RESET);
+    printf(MAGENTA"        └─────┘               a: moverte hacia la izquierda\n"RESET);
+    printf(MAGENTA"┌────┐ ┌─────┐  ┌─────┐\n"RESET);
+    printf(MAGENTA"│  a  │ │  s  │  │  d  │      s: moverte hacia abajo\n"RESET);
+    printf(MAGENTA"└─────┘ └─────┘  └────┘\n"RESET);
+    printf(MAGENTA"                              d: moverte hacia la derecha\n"RESET);
+     printf(WHITE"Presiona Enter para salir\n"RESET);
     getchar();
     limpiar_consola();
 }
 
 void opcion4() {
     limpiar_consola();
-    puts("1: Tiene x cantidad de vida. Te quita x cantidad de vida");
-    puts("2: Tiene x cantidad de vida. Te quita x cantidad de vida");
-    puts("Presiona Enter para salir");
+    printf(RED"1: Tiene x cantidad de vida. Te quita x cantidad de vida\n"RESET);
+    printf(RED"2: Tiene x cantidad de vida. Te quita x cantidad de vida\n"RESET);
+     printf(WHITE"Presiona Enter para salir\n"RESET);
     getchar();
     limpiar_consola();
 }
@@ -151,21 +152,21 @@ void opcion5() {
     limpiar_consola();
     printf(GREEN"3: te da un aumento de vida de x cantidad\n"RESET);
     printf(GREEN"4: te da un aumento de vida de x cantidad\n"RESET);
-    printf("Presiona Enter para salir");
+     printf(WHITE"Presiona Enter para salir\n"RESET);
     getchar();
     limpiar_consola();
 }
 
 void mostrarMenu() {
-    printf(BLUE"┌──────────────┐\n"RESET);
-    printf(BLUE"│ Menú:         │\n"RESET);
-    printf(BLUE"│ 1. Jugar      │\n"RESET);
-    printf(BLUE"│ 2. Reglas     │\n"RESET);
-    printf(BLUE"│ 3. Controles  │\n"RESET);
-    printf(BLUE"│ 4. Enemigos   │\n"RESET);
-    printf(BLUE"│ 5. Items      │\n"RESET);
-    printf(BLUE"│ 6. Salir      │\n"RESET);
-    printf(BLUE"└──────────────┘\n"RESET);
+    printf(CYAN"┌──────────────┐\n"RESET);
+    printf(CYAN"│ Menú:         │\n"RESET);
+    printf(CYAN"│ 1. Jugar      │\n"RESET);
+    printf(CYAN"│ 2. Reglas     │\n"RESET);
+    printf(CYAN"│ 3. Controles  │\n"RESET);
+    printf(CYAN"│ 4. Enemigos   │\n"RESET);
+    printf(CYAN"│ 5. Items      │\n"RESET);
+    printf(CYAN"│ 6. Salir      │\n"RESET);
+    printf(CYAN"└──────────────┘\n"RESET);
 }
 
 int main(int argc, char *argv[]) {
@@ -182,7 +183,7 @@ int main(int argc, char *argv[]) {
     mostrarMenu();
     
     while (1) {
-        printf("Ingrese una opción: ");
+        printf(WHITE"Ingrese una opción: "RESET);
         if (scanf("%d", &opcion) != 1) {
             // Limpiar el buffer de entrada en caso de entrada no válida
             while (getchar() != '\n');
