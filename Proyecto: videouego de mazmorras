@@ -223,7 +223,9 @@ int main(int argc, char *argv[]) {
                 break;
             case 6:
                 limpiar_consola();
-                puts("Saliendo...");
+                printf("┌────────────────────────┐\n");
+                puts("│       Saliendo...      │");
+                printf("└───────────────────────┘\n");
                 return 0;
             default:
                 puts("Opción inválida. Por favor, ingrese una opción válida.");
