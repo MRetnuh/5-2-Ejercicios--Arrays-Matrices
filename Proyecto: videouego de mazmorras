@@ -189,6 +189,7 @@ int main(int argc, char *argv[]) {
             puts("Opción inválida");
             break;
     }
+     while (getchar() != '\n');
 }
     return 0;
 }
