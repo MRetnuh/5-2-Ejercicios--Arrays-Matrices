@@ -153,6 +153,7 @@ int main(int argc, char *argv[]) {
     puts("│           Juego de Mazmorra           │");
     puts("└───────────────────────────────────────┘");
     bienvenida(nombre);
+    limpiar_consola();
     while(1){
     puts("  Menú:");
     puts("  1. Jugar");
