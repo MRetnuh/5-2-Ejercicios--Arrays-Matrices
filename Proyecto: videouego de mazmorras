@@ -150,13 +150,15 @@ void opcion5() {
 }
 
 void mostrarMenu() {
-    puts("  Menú:");
-    puts("  1. Jugar");
-    puts("  2. Reglas");
-    puts("  3. Controles");
-    puts("  4. Enemigos");
-    puts("  5. Items");
-    puts("  6. Salir");
+    puts("┌───────────────┐");
+    puts("│ Menú:         │");
+    puts("│ 1. Jugar      │");
+    puts("│ 2. Reglas     │");
+    puts("│ 3. Controles  │");
+    puts("│ 4. Enemigos   │");
+    puts("│ 5. Items      │");
+    puts("│ 6. Salir      │");
+    puts("└───────────────┘");
 }
 
 int main(int argc, char *argv[]) {
