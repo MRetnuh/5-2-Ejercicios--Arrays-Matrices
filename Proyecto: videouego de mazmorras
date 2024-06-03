@@ -197,6 +197,14 @@ int main(int argc, char *argv[]) {
         switch (opcion) {
             case 1:
                 limpiar_consola();
+                 for (int cargando = 0; cargando <= 100; cargando += 5) {
+          printf("┌─────────────────────────────────┐\n");
+          printf("│          Cargando:%3d%%           │\n", cargando);
+          printf("│                                  │\n");
+          printf("└──────────────────────────────────┘\n");
+          usleep(200000); // Pausa de 0.2 segundos
+          limpiar_consola();
+        }
                 rellenarMazmorras(15, mazmorra1, 4);
                 movimientos(15, 15, mazmorra1, jugador);
                 limpiar_consola();
