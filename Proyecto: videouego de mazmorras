@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 #define YELLOW  "\033[1;33m"
 #define RED     "\033[1;31m"
 #define BLUE    "\033[1;34m"
@@ -223,9 +224,21 @@ int main(int argc, char *argv[]) {
                 break;
             case 6:
                 limpiar_consola();
-                printf("┌────────────────────────┐\n");
-                puts("│       Saliendo...      │");
-                printf("└───────────────────────┘\n");
+                 for (int i = 0; i <= 100; i += 10) {
+               for (int i = 0; i < 3; i++) {
+    printf("┌────────────────────────┐\n");
+    printf("│       Saliendo");
+    for (int j = 0; j <= i; j++) {
+        printf(".");
+    }
+    printf("       │\n");
+    printf("└─────────────────────────┘\n");
+    usleep(200000); // 200,000 microsegundos = 0.2 segundos
+    limpiar_consola();
+}
+                 usleep(200000);
+                 limpiar_consola();
+                 }
                 return 0;
             default:
                 puts("Opción inválida. Por favor, ingrese una opción válida.");
