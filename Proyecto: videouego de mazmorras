@@ -131,9 +131,9 @@ void opcion3() {
     printf(MAGENTA"        ┌─────┐               w: moverte hacia arriba\n"RESET);
     printf(MAGENTA"        │  w  │\n"RESET);
     printf(MAGENTA"        └─────┘               a: moverte hacia la izquierda\n"RESET);
-    printf(MAGENTA"┌─────┐ ┌─────┐  ┌─────┐\n"RESET);
+    printf(MAGENTA"┌────┐ ┌─────┐  ┌─────┐\n"RESET);
     printf(MAGENTA"│  a  │ │  s  │  │  d  │      s: moverte hacia abajo\n"RESET);
-    printf(MAGENTA"└─────┘ └─────┘  └─────┘\n"RESET);
+    printf(MAGENTA"└─────┘ └─────┘  └────┘\n"RESET);
     printf(MAGENTA"                              d: moverte hacia la derecha\n"RESET);
      printf(WHITE"Presiona Enter para salir\n"RESET);
     while (getchar() != '\n');
