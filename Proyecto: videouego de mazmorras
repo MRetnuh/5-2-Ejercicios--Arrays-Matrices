@@ -250,7 +250,7 @@ int main(int argc, char *argv[]) {
                  }
                 return 0;
             default:
-                puts("Opción inválida. Por favor, ingrese una opción válida.");
+                printf(RED"Opción inválida. Por favor, ingrese una opción válida.\n"RESET);
                 break;
         }
     }
