@@ -122,7 +122,7 @@ void opcion2() {
     printf(BLUE"│  o la fuerza.                  │\n"RESET);
     printf(BLUE"└────────────────────────────────┘\n"RESET);
     printf(WHITE"Presiona Enter para salir\n"RESET);
-    getchar();
+    while (getchar() != '\n');
     limpiar_consola();
 }
 
@@ -131,12 +131,12 @@ void opcion3() {
     printf(MAGENTA"        ┌─────┐               w: moverte hacia arriba\n"RESET);
     printf(MAGENTA"        │  w  │\n"RESET);
     printf(MAGENTA"        └─────┘               a: moverte hacia la izquierda\n"RESET);
-    printf(MAGENTA"┌────┐ ┌─────┐  ┌─────┐\n"RESET);
+    printf(MAGENTA"┌─────┐ ┌─────┐  ┌─────┐\n"RESET);
     printf(MAGENTA"│  a  │ │  s  │  │  d  │      s: moverte hacia abajo\n"RESET);
-    printf(MAGENTA"└─────┘ └─────┘  └────┘\n"RESET);
+    printf(MAGENTA"└─────┘ └─────┘  └─────┘\n"RESET);
     printf(MAGENTA"                              d: moverte hacia la derecha\n"RESET);
      printf(WHITE"Presiona Enter para salir\n"RESET);
-    getchar();
+    while (getchar() != '\n');
     limpiar_consola();
 }
 
@@ -145,7 +145,7 @@ void opcion4() {
     printf(RED"1: Tiene x cantidad de vida. Te quita x cantidad de vida\n"RESET);
     printf(RED"2: Tiene x cantidad de vida. Te quita x cantidad de vida\n"RESET);
      printf(WHITE"Presiona Enter para salir\n"RESET);
-    getchar();
+    while (getchar() != '\n');
     limpiar_consola();
 }
 
@@ -154,7 +154,7 @@ void opcion5() {
     printf(GREEN"3: te da un aumento de vida de x cantidad\n"RESET);
     printf(GREEN"4: te da un aumento de vida de x cantidad\n"RESET);
      printf(WHITE"Presiona Enter para salir\n"RESET);
-    getchar();
+    while (getchar() != '\n');
     limpiar_consola();
 }
 
@@ -185,9 +185,10 @@ int main(int argc, char *argv[]) {
     
     while (1) {
         printf(WHITE"Ingrese una opción: "RESET);
+        int l = 0;
         if (scanf("%d", &opcion) != 1) {
             // Limpiar el buffer de entrada en caso de entrada no válida
-            while (getchar() != '\n');
+            while ((l = getchar()) != '\n');
             printf(RED"Opción inválida. Por favor, ingrese una opción válida.\n" RESET);
             continue;
         }
