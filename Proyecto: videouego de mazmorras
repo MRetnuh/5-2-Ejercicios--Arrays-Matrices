@@ -6,11 +6,11 @@
 #define RED     "\033[1;31m"
 #define BLUE    "\033[1;34m"
 #define RESET   "\033[0m"
-#define YELLOW  "\033[1;33m"
 #define GREEN   "\033[1;32m"
 #define MAGENTA "\033[1;35m"
 #define CYAN    "\033[1;36m"
 #define WHITE   "\033[1;37m"
+
 void limpiar_consola() {
     printf("\033[H\033[J");
 }
@@ -59,6 +59,16 @@ void actualizar_mazmorra(int n, char mazmorra[n][n], int fila, int columna, int 
     mazmorra[fila_nueva][columna_nueva] = '5'; // Mover al jugador
 }
 
+void pelea(char jugador, char enemigo) {
+    limpiar_consola();
+    printf("%c                       %c\n", jugador, enemigo);
+    printf("Elija su movimiento:\n");
+    printf("Opcion 1\n");
+    printf("Opcion 2\n");
+    printf("Opcion 3\n");
+    printf("Opcion 4\n");
+}
+
 int movimientos(int Nmazmorra, int tamañomazmorra, char mazmorra[tamañomazmorra][tamañomazmorra], char jugador) {
     srand(time(NULL));
     int fila = rand() % Nmazmorra;
@@ -70,7 +80,33 @@ int movimientos(int Nmazmorra, int tamañomazmorra, char mazmorra[tamañomazmorr
     mazmorra[fila][columna] = jugador;
     limpiar_consola();
     imprimirMazmorra(tamañomazmorra, mazmorra, fila, columna);
+    
     while (1) {
+        if(mazmorra[fila][columna + 1] == '1' || mazmorra[fila][columna + 1] == '2') {
+            char eleccion;
+            puts("Aparecio un enemigo");
+            printf("Que escoges:\n");
+            printf("Pelear (P)\n");
+            printf("Escapar (E)\n");
+            if(scanf(" %c", &eleccion) != 1){
+            // Limpiar el buffer de entrada en caso de entrada no válida
+            while ((getchar()) != '\n');
+            printf(RED"Opción inválida. Por favor, ingrese una opción válida.\n" RESET);
+            continue;
+        }
+            if(eleccion == 'e' || eleccion == 'E'){
+                int moneda = rand() % 2;
+                if(moneda == 1){
+                    puts("Conseguiste huir");
+                    fila++;
+                    imprimirMazmorra(tamañomazmorra, mazmorra, fila, columna);
+                } else {
+                    pelea(jugador, mazmorra[fila][columna + 1]);
+                }
+            } else if(eleccion == 'p' || eleccion == 'P'){
+                pelea(jugador, mazmorra[fila][columna + 1]);
+            }
+        }
         scanf(" %c", &movimiento);
         if (movimiento == 'w') {
             nuevafila = fila - 1;
@@ -99,7 +135,7 @@ int movimientos(int Nmazmorra, int tamañomazmorra, char mazmorra[tamañomazmorr
         columna = nuevacolumna;
         limpiar_consola();
         imprimirMazmorra(tamañomazmorra, mazmorra, fila, columna);
-    }
+    }  
     return 0;
 }
 
@@ -135,7 +171,7 @@ void opcion3() {
     printf(MAGENTA"│  a  │ │  s  │  │  d  │      s: moverte hacia abajo\n"RESET);
     printf(MAGENTA"└─────┘ └─────┘  └────┘\n"RESET);
     printf(MAGENTA"                              d: moverte hacia la derecha\n"RESET);
-     printf(WHITE"Presiona Enter para salir\n"RESET);
+    printf(WHITE"Presiona Enter para salir\n"RESET);
     while (getchar() != '\n');
     limpiar_consola();
 }
@@ -144,7 +180,7 @@ void opcion4() {
     limpiar_consola();
     printf(RED"1: Tiene x cantidad de vida. Te quita x cantidad de vida\n"RESET);
     printf(RED"2: Tiene x cantidad de vida. Te quita x cantidad de vida\n"RESET);
-     printf(WHITE"Presiona Enter para salir\n"RESET);
+    printf(WHITE"Presiona Enter para salir\n"RESET);
     while (getchar() != '\n');
     limpiar_consola();
 }
@@ -153,7 +189,7 @@ void opcion5() {
     limpiar_consola();
     printf(GREEN"3: te da un aumento de vida de x cantidad\n"RESET);
     printf(GREEN"4: te da un aumento de vida de x cantidad\n"RESET);
-     printf(WHITE"Presiona Enter para salir\n"RESET);
+    printf(WHITE"Presiona Enter para salir\n"RESET);
     while (getchar() != '\n');
     limpiar_consola();
 }
@@ -198,14 +234,14 @@ int main(int argc, char *argv[]) {
         switch (opcion) {
             case 1:
                 limpiar_consola();
-                 for (int cargando = 0; cargando <= 100; cargando += 5) {
-          printf("┌─────────────────────────────────┐\n");
-          printf("│          Cargando:%3d%%           │\n", cargando);
-          printf("│                                  │\n");
-          printf("└──────────────────────────────────┘\n");
-          usleep(200000); // Pausa de 0.2 segundos
-          limpiar_consola();
-        }
+                for (int cargando = 0; cargando <= 100; cargando += 5) {
+                    printf("┌─────────────────────────────────┐\n");
+                    printf("│          Cargando:%3d%%           │\n", cargando);
+                    printf("│                                  │\n");
+                    printf("└──────────────────────────────────┘\n");
+                    usleep(200000); // Pausa de 0.2 segundos
+                    limpiar_consola();
+                }
                 rellenarMazmorras(15, mazmorra1, 4);
                 movimientos(15, 15, mazmorra1, jugador);
                 limpiar_consola();
@@ -233,21 +269,21 @@ int main(int argc, char *argv[]) {
                 break;
             case 6:
                 limpiar_consola();
-                 for (int i = 0; i <= 100; i += 10) {
-               for (int i = 0; i < 3; i++) {
-    printf(WHITE"┌─────────────────────────┐\n"RESET);
-    printf(WHITE"│       Saliendo"RESET);
-    for (int j = 0; j <= i; j++) {
-        printf(WHITE"."RESET);
-    }
-    printf(WHITE"       │\n"RESET);
-    printf(WHITE"└─────────────────────────┘\n"RESET);
-    usleep(200000); // 200,000 microsegundos = 0.2 segundos
-    limpiar_consola();
-}
-                 usleep(200000);
-                 limpiar_consola();
-                 }
+                for (int i = 0; i <= 100; i += 10) {
+                    for (int j = 0; j < 3; j++) {
+                        printf(WHITE"┌─────────────────────────┐\n"RESET);
+                        printf(WHITE"│       Saliendo"RESET);
+                        for (int k = 0; k <= j; k++) {
+                            printf(WHITE"."RESET);
+                        }
+                        printf(WHITE"       │\n"RESET);
+                        printf(WHITE"└─────────────────────────┘\n"RESET);
+                        usleep(200000); // 200,000 microsegundos = 0.2 segundos
+                        limpiar_consola();
+                    }
+                    usleep(200000);
+                    limpiar_consola();
+                }
                 return 0;
             default:
                 printf(RED"Opción inválida. Por favor, ingrese una opción válida.\n"RESET);
