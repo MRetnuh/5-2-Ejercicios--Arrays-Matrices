@@ -1,6 +1,10 @@
 // Online C compiler to run C program online
 #include <stdio.h>
-
+void cambiar(int a[2][2]){
+     int k = a[0][1];
+   a[0][1] = a[1][0];
+   a[1][0] = k;
+}
 int main() {
    int n;
    int a[2][2];
@@ -11,9 +15,7 @@ int main() {
           a[i][j] = n;
        }
    }
-   int k = a[0][1];
-   a[0][1] = a[1][0];
-   a[1][0] = k;
+   cambiar(a);
     for(int i = 0; i < 2; i++){
        for(int j = 0; j < 2; j++){
            printf("%d ", a[i][j]);
