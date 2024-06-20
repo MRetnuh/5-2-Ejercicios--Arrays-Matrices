@@ -1,10 +1,18 @@
 // Online C compiler to run C program online
 #include <stdio.h>
-
+void determinante(int a[3][3]){
+    double determinant = (a[0][0] * (a[1][1] * a[2][2] - a[1][2] * a[2][1])) - (a[0][1] * (a[1][0] * a[2][2] - a[1][2] * a[2][0])) + (a[0][2] * (a[1][0] * a[2][1] - a[1][1] * a[2][0]));
+  for(int i = 0; i < 3; i++){
+       for(int j = 0; j < 3; j++){
+           printf("%d ", a[i][j]);
+       }
+       printf("\n");
+    }
+ printf("La determinante de esta matriz es: %.2f\n", determinant);
+}
 int main() {
    int n;
    int a[3][3];
-   double determinante;
    puts("Ingrese 9 valores para una matriz 3x3");
    for(int i = 0; i < 3; i++){
        for(int j = 0; j < 3; j++){
@@ -12,13 +20,6 @@ int main() {
           a[i][j] = n;
        }
    }
-   determinante = (a[0][0] * (a[1][1] * a[2][2] - a[1][2] * a[2][1])) - (a[0][1] * (a[1][0] * a[2][2] - a[1][2] * a[2][0])) + (a[0][2] * (a[1][0] * a[2][1] - a[1][1] * a[2][0]));
-    for(int i = 0; i < 3; i++){
-       for(int j = 0; j < 3; j++){
-           printf("%d ", a[i][j]);
-       }
-       printf("\n");
-    }
-    printf("La determinante de esta matriz es: %.2f\n", determinante);
+  determinante(a);
     return 0;
 }
