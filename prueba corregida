@@ -1,0 +1,120 @@
+#include <stdio.h>
+#include<unistd.h>
+#include<stdlib.h>
+#include<time.h>
+#define RED "\033[1;31m"
+#define RESET "\033[0m"
+#define YELLOW "\033[1;33m"
+#define CYAN "\033[1;34m"
+#define GREEN "\033[1;32m"
+int viandas(char *comidas[4], int precios[4]){
+    printf(CYAN"\nQue quiere ya que tenemos: \n"RESET);
+    for(int i =0; i < 4; i++){
+        printf(CYAN"%s (numero: %d) precio: %d\n"RESET, comidas[i], i, precios[i]);
+    }
+    printf(CYAN"El pedido lo tiene que realizar de la siguiente manera: Comida // Cantidad // Operador\n"RESET);
+    printf(CYAN"Para la comida, tiene que seleccionar el numero de la comida\n"RESET);
+    /*Es una Funcion que le muestra al cliente las opciones de venta y tiene argumentos que le pasa a main*/
+}
+void menu(){
+    printf(YELLOW"Operador 1\n"RESET);
+    printf(YELLOW"Operador 2\n"RESET);
+    printf(YELLOW"Operador 3\n"RESET);
+    printf(YELLOW"Operador 4\n"RESET);
+    printf(YELLOW"Operador 5\n"RESET);
+    printf(YELLOW"Operador 6\n"RESET);
+    printf(YELLOW"Operador 7\n"RESET);
+
+    /*Es un procedimiento que le muestra al cliente los operadores al cliente*/
+}
+int main(){
+     char *comidas[] = {"Vegetales", "Carnes", "Pescado", "Frutas"};
+    int precios[] = {1000, 2000, 3000, 4000};
+ printf(GREEN"Bienvenido al negocio de viandas\n"RESET);
+  printf(YELLOW"Elija el operador con el cual quiera ser atendido: \n"RESET);
+  int comida;
+  int operadorD = 0;
+  int cantidad;
+  int operador;
+  menu();
+  viandas(comidas, precios);
+ int ventasMayor4 = 0;
+ int guardado = 0;
+  /*En el main, se utilizan las funciones y procedimientos y se les pasa los argumentos*/
+  while(1){
+    if(scanf("%d", &comida) != 1){
+        while(getchar() != '\n');
+        system("clear");
+        menu();
+         viandas(comidas, precios);
+        printf(RED"Ingrese una opcion valida\n"RESET);
+        continue;
+    }
+    if(comida > 4 || comida < 0){
+        while(getchar() != '\n');
+        system("clear");
+        menu();
+         viandas(comidas, precios);
+        printf(RED"Ingrese una opcion valida\n"RESET);
+         continue;
+    }
+   if(scanf("%d", &cantidad) != 1){
+        while(getchar() != '\n');
+        system("clear");
+        menu();
+         viandas(comidas, precios);
+        printf(RED"Ingrese una opcion valida\n"RESET);
+         continue;
+    }
+    if(cantidad < 0){
+        while(getchar() != '\n');
+        system("clear");
+        menu();
+         viandas(comidas, precios);
+        printf(RED"Ingrese una opcion valida\n"RESET);
+         continue;
+    }
+    if(scanf("%d", &operador) != 1){
+        while(getchar() != '\n');
+        system("clear");
+        menu();
+         viandas(comidas, precios);
+        printf(RED"Ingrese una opcion valida\n"RESET);
+         continue;
+    }
+    if(operador < 0 || operador > 7){
+        while(getchar() != '\n');
+        system("clear");
+        menu();
+         viandas(comidas, precios);
+        printf(RED"Ingrese una opcion valida\n"RESET);
+         continue;
+         /*En el while, el cliente ingresa los valores y si ingresa bien o no, te pedira voler a ingresar o no*/
+    }
+    system("clear");
+     menu();
+         viandas(comidas, precios);
+         guardado = operador;
+     operadorD += precios[comida] * 0.10;
+     if(cantidad > 4){
+          operadorD += (precios[comida] * 0.10) * 0.03 * cantidad;
+          ventasMayor4++;
+     }
+     if(operador == 0){
+         break;
+     }
+  }
+     system("clear");
+     printf(GREEN"Informe: \n"RESET);
+     if(ventasMayor4 > 0){
+         printf(GREEN"%d ventas supero las 4 unidades\n"RESET, ventasMayor4);
+         printf(GREEN"Ganancias + comision = %d\n"RESET, operadorD);
+         }
+     printf(GREEN"La ganancia fue gracias a %s\n"RESET, comidas[comida]);
+     for(int i = 1; i <= 7; i++){
+         printf(GREEN"Operador %d. ganancia = %d\n"RESET, i, operadorD);
+     }
+     return 0;
+     /*Se muestran las ganancias*/
+
+}
