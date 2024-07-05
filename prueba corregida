@@ -40,6 +40,7 @@ int main(){
   viandas(comidas, precios);
  int ventasMayor4 = 0;
  int guardado = 0;
+ int ventas = 0;
   /*En el main, se utilizan las funciones y procedimientos y se les pasa los argumentos*/
   while(1){
     if(scanf("%d", &comida) != 1){
@@ -95,7 +96,8 @@ int main(){
      menu();
          viandas(comidas, precios);
          guardado = operador;
-     operadorD += precios[comida] * 0.10;
+         ventas += cantidad;
+     operadorD += precios[comida] * 0.10 * cantidad;
      if(cantidad > 4){
           operadorD += (precios[comida] * 0.10) * 0.03 * cantidad;
           ventasMayor4++;
@@ -112,7 +114,7 @@ int main(){
          }
      printf(GREEN"La ganancia fue gracias a %s\n"RESET, comidas[comida]);
      for(int i = 1; i <= 7; i++){
-         printf(GREEN"Operador %d. ganancia = %d\n"RESET, i, operadorD);
+         printf(GREEN"Operador %d. ganancia = %d cant viandas = %d\n"RESET, i, operadorD, ventas);
      }
      return 0;
      /*Se muestran las ganancias*/
