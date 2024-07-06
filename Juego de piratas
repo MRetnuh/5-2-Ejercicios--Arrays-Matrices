@@ -1,122 +1,160 @@
 #include <stdio.h>
-#include<unistd.h>
-#include<stdlib.h>
-#include<time.h>
-#define RED "\033[1;31m"
-#define RESET "\033[0m"
-#define YELLOW "\033[1;33m"
-#define CYAN "\033[1;34m"
-#define GREEN "\033[1;32m"
-int viandas(char *comidas[4], int precios[4]){
-    printf(CYAN"\nQue quiere ya que tenemos: \n"RESET);
-    for(int i =0; i < 4; i++){
-        printf(CYAN"%s (numero: %d) precio: %d\n"RESET, comidas[i], i, precios[i]);
-    }
-    printf(CYAN"El pedido lo tiene que realizar de la siguiente manera: Comida // Cantidad // Operador\n"RESET);
-    printf(CYAN"Para la comida, tiene que seleccionar el numero de la comida\n"RESET);
-    /*Es una Funcion que le muestra al cliente las opciones de venta y tiene argumentos que le pasa a main*/
-}
-void menu(){
-    printf(YELLOW"Operador 1\n"RESET);
-    printf(YELLOW"Operador 2\n"RESET);
-    printf(YELLOW"Operador 3\n"RESET);
-    printf(YELLOW"Operador 4\n"RESET);
-    printf(YELLOW"Operador 5\n"RESET);
-    printf(YELLOW"Operador 6\n"RESET);
-    printf(YELLOW"Operador 7\n"RESET);
+#include <stdlib.h>
+#include <time.h>
+#define YELLOW  "\x1b[33m"
+#define RESET   "\x1b[0m"
 
-    /*Es un procedimiento que le muestra al cliente los operadores al cliente*/
-}
-int main(){
-     char *comidas[] = {"Vegetales", "Carnes", "Pescado", "Frutas"};
-    int precios[] = {1000, 2000, 3000, 4000};
- printf(GREEN"Bienvenido al negocio de viandas\n"RESET);
-  printf(YELLOW"Elija el operador con el cual quiera ser atendido: \n"RESET);
-  int comida;
-  int operadorD = 0;
-  int cantidad;
-  int operador;
-  menu();
-  viandas(comidas, precios);
- int ventasMayor4 = 0;
- int guardado = 0;
- int ventas = 0;
-  /*En el main, se utilizan las funciones y procedimientos y se les pasa los argumentos*/
-  while(1){
-    if(scanf("%d", &comida) != 1){
-        while(getchar() != '\n');
-        system("clear");
-        menu();
-         viandas(comidas, precios);
-        printf(RED"Ingrese una opcion valida\n"RESET);
-        continue;
-    }
-    if(comida > 4 || comida < 0){
-        while(getchar() != '\n');
-        system("clear");
-        menu();
-         viandas(comidas, precios);
-        printf(RED"Ingrese una opcion valida\n"RESET);
-         continue;
-    }
-   if(scanf("%d", &cantidad) != 1){
-        while(getchar() != '\n');
-        system("clear");
-        menu();
-         viandas(comidas, precios);
-        printf(RED"Ingrese una opcion valida\n"RESET);
-         continue;
-    }
-    if(cantidad < 0){
-        while(getchar() != '\n');
-        system("clear");
-        menu();
-         viandas(comidas, precios);
-        printf(RED"Ingrese una opcion valida\n"RESET);
-         continue;
-    }
-    if(scanf("%d", &operador) != 1){
-        while(getchar() != '\n');
-        system("clear");
-        menu();
-         viandas(comidas, precios);
-        printf(RED"Ingrese una opcion valida\n"RESET);
-         continue;
-    }
-    if(operador < 0 || operador > 7){
-        while(getchar() != '\n');
-        system("clear");
-        menu();
-         viandas(comidas, precios);
-        printf(RED"Ingrese una opcion valida\n"RESET);
-         continue;
-         /*En el while, el cliente ingresa los valores y si ingresa bien o no, te pedira voler a ingresar o no*/
-    }
-    system("clear");
-     menu();
-         viandas(comidas, precios);
-         guardado = operador;
-         ventas += cantidad;
-     operadorD += precios[comida] * 0.10;
-     if(cantidad > 4){
-          operadorD += (precios[comida] * 0.10) * 0.03 * cantidad;
-          ventasMayor4++;
-     }
-     if(operador == 0){
-         break;
-     }
-  }
-     system("clear");
-     printf(GREEN"Informe: \n"RESET);
-     if(ventasMayor4 > 0){
-         printf(GREEN"%d ventas supero las 4 unidades\n"RESET, ventasMayor4);
-         printf(GREEN"Ganancias + comision = %d\n"RESET, operadorD);
-         }
-     printf(GREEN"La ganancia fue gracias a %s\n"RESET, comidas[comida]);
-     for(int i = 1; i <= 7; i++){
-         printf(GREEN"Operador %d. ganancia = %d cant viandas = %d\n"RESET, i, operadorD, ventas);
-     }
-     return 0;
-     /*Se muestran las ganancias*/
+//funcion para crear el tablero, se definen las variables de la funcion
+void crear_tablero(int n,int Tablero[n][n],int pirata, int pirata1, int pirata2, int tesoro1, int tesoro2){
+    //condicion para que el tablero sea un numero minimo de 4
+  
+    
+    printf("0: Agua\n 1: Tierra\n 2: Puentes\n 3: Pirata\n \n");
 
+    //for que rellena el tamaño determinado de la matriz n con 1
+   for (int i = 0; i < n; i++){
+        for(int j=0;j < n; j++){
+            Tablero[i][j]=1;
+        }
+   }
+    //for para rellenar los bordes con 0 representando el agua
+    for (int i = 0; i < n ; i++){
+        for (int j = 0; j <n ; j += (n-1)){
+            Tablero[i][j]=0;
+        }
+    }  
+        for (int i = 0; i < n ; i += (n-1)){
+        for (int j = 0; j < n ; j++){
+            Tablero[i][j]=0;
+        }
+    }
+    Tablero[0][n-1]=2;
+    Tablero[n-1][0]=2;
+    Tablero[pirata1][pirata2]= pirata;
+    //en caso de que el pirata tenga la misma semilla que el tesoro se repite la aparicion del pirata
+    while (Tablero[pirata1][pirata2] == Tablero[tesoro1][tesoro2]){
+        pirata1 = (rand()% (n-2)) + 1;
+        pirata2 = (rand()% (n-2)) + 1;
+    }
+}
+
+//funcion para imprimir el tablero
+void imprimir_tablero (int n,int Tablero[n][n], int pirata){
+    for (int i = 0; i < n; i++){
+        for(int j=0;j < n; j++){
+            if(Tablero[i][j] == pirata){
+                printf(YELLOW "%d " RESET, Tablero[i][j]);
+            }
+            else{
+            printf("%d ", Tablero[i][j]);
+            }
+        }
+        printf("\n");
+   }
+}
+//funcion para buscar el tesoro
+int buscar_tesoro (int n,int Tablero[n][n],int pirata, int pirata1, int pirata2, int tesoro1, int tesoro2,int intentos){
+    //numero de intentos, al llegar a 50 se pierde
+    while (intentos <= 50) {
+    //variables temporales para guardar la posicion anterior de lpirata para poder actualizarla a la nueva
+    int a = pirata1;
+    int b = pirata2;
+    printf("\nintento Nº%d\n", intentos);
+    printf("\n");
+    intentos++;
+    //se crea la variable opcionDireccion pidiendole al usuario que elija una opcion para poder identificar el movimiento del pirata
+    //en caso de que el numero no este en las opciones salta un error
+    int opcionDireccion;
+    if(intentos >= 1){
+    printf("Elija una opcion\n 1)Norte\n 2)Sur\n 3)Este\n 4)Oeste:\n");
+     scanf("%d", &opcionDireccion);
+        //norte
+        if (opcionDireccion == 1) {
+            Tablero[pirata1 -1][pirata2] = pirata;
+            Tablero[a][b] = 1;
+            pirata1=a -1;
+            pirata2=b;
+        } //sur 
+        else if (opcionDireccion == 2) {
+          Tablero[pirata1 + 1][pirata2] = pirata;
+          Tablero[a][b] = 1;
+          pirata1=a + 1;
+          pirata2=b;
+        } //este 
+        else if (opcionDireccion == 3) {            
+          Tablero[pirata1][pirata2 + 1] = pirata;
+          Tablero[a][b] = 1;
+          pirata1=a;
+            pirata2=b + 1;
+        } //oeste 
+        else if (opcionDireccion == 4) {
+          Tablero[pirata1][pirata2 - 1] = pirata;
+          Tablero[a][b] = 1;
+          pirata1=a;
+            pirata2=b - 1;
+        } //mensaje de error
+        else{
+            puts("Opcion invalida");
+            printf("\n");
+            return 0;
+        }
+        a=pirata1;
+        b=pirata2;
+    }
+    //actualizacion de posicion del pirata
+    for (int i = 0; i < n; i++){
+        for(int j=0;j < n; j++){
+            if(Tablero[i][j] == pirata){
+                printf(YELLOW "%d " RESET, Tablero[i][j]);
+            }
+            else{
+            printf("%d ", Tablero[i][j]);
+            }
+        }
+        printf("\n");
+   }
+   Tablero[pirata1][pirata2] = 1;
+   //comprobacion de resultado
+   
+   //si llega a 50 intentos pierde
+   if(intentos == 50){
+       puts("Perdiste");
+       printf("El tesoro se encontraba en la fila %d y la columna %d\n", tesoro1, tesoro2);
+       return 0;
+   } //si pisa el agua pierde
+   if(Tablero[pirata1][pirata2] == Tablero[0][pirata2] || Tablero[pirata1][pirata2] == Tablero[n-1][pirata2] || Tablero[pirata1][pirata2] == Tablero[pirata1][0] || Tablero[pirata1][pirata2] == Tablero[pirata1][n-1]){
+        puts("Perdiste por pisar el agua");
+        return 0;
+   } //si encuentra el tesoro gana
+   if(pirata1 == tesoro1 && pirata2 == tesoro2){
+       puts("Ganaste");
+       return 0;
+   }
+}
+   return 0;
+
+}
+//funcion principal
+int main(int argc, char * argv[]){
+    srand(time(NULL));
+    int n;
+    printf("Elija el tamaño (minimo 4x4) del tablero: ");
+    scanf("%d", &n);
+      if(n < 4) {
+        puts("Error, ponga un numero valido");
+        return 0;
+    }
+    int pirata = 3;
+    //se definen las semillas de aparicion del pirata y el tesoro
+    //no pueden aparecer en el agua
+    int pirata1 = (rand()% (n-2)) + 1;
+    int pirata2 = (rand()% (n-2)) + 1;
+    int tesoro1 = (rand()% (n-2)) + 1;
+    int tesoro2 = (rand()% (n-2)) + 1;
+    int intentos = 0;
+    int Tablero [n][n];
+    //llamadas a las funciones
+    crear_tablero (n, Tablero,pirata, pirata1, pirata2, tesoro1, tesoro2);
+    imprimir_tablero (n,Tablero, pirata);
+    buscar_tesoro (n, Tablero,pirata, pirata1, pirata2, tesoro1, tesoro2, intentos);
 }
